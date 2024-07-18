@@ -17,7 +17,7 @@ Add the tenant name of your organization and lunar api key to `docker run` or th
 
 ### as a dev container
 
-> This does not work yet, and probably will never work since thd dev container appears to not have permissions
+> This does not work yet, and probably will never work since the dev container appears to not have permissions
 > to run as PID 1 to execute the /init script (the image's entrypoint)
 
 1. Start a container runtime e.g., colima, Docker Desktop, etc.
