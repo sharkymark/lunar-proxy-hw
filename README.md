@@ -4,7 +4,7 @@
 
 ## Authentication
 
-Add the tenant name of your organization to `docker run` or the `devcontainer.json` which lunar.dev provided you
+Add the tenant name of your organization and lunar api key to `docker run` or the `devcontainer.json` which lunar.dev provided you
 
 ## Run the proxy
 
