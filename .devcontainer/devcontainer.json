@@ -1,0 +1,35 @@
+{
+  "name": "lunar-proxy",
+  "image": "lunarapi/lunar-proxy:latest",
+  "mounts": [
+    {
+      "source": ".",
+      "target": "/etc/lunar-proxy",
+      "type": "bind"
+    }
+  ],
+  "containerEnv": {
+    "TENANT_NAME": "${localEnv:TENANT_NAME}",
+    "LUNAR_API_KEY": "${localEnv:LUNAR_API_KEY}"
+  },
+  "forwardPorts": [
+    "8000:8000",
+    "8081:8081",
+    "8040:8040"
+  ],
+  "customizations": {
+    "vscode": {
+    "settings": { 
+      "terminal.integrated.shell.linux": "/bin/bash"
+    }
+  }
+}, 
+  /*
+  This container image entrypoint `/init` is a script that will run the `lunar-proxy` command with the provided environment variables. But a dev container does not call it. The postCreateCommand also does not work - saying permission problems to run as PID 1. Try manually starting /init in the terminal after the container is running.
+
+  "postCreateCommand": "/init"
+  
+  */
+}
+
+  
