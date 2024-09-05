@@ -1,0 +1,29 @@
+allowed_domains: 
+  - hugoipfk3l2as.pit-1.try.coder.app
+  - p92ju3rkspl0m.pit-1.try.coder.app
+blocked_domains: 
+
+endpoints:
+  - url: p92ju3rkspl0m.pit-1.try.coder.app/api/v2/organizations/{orgID}/templates
+    method: GET
+    remedies:
+      - name: Smart cache of templates (terraform definitions of dev environments)
+        enabled: true
+        config:
+          caching:
+            request_payload_paths:
+              - payload_type: path_params
+                path: "orgID"       
+            ttl_seconds: 1800 # 30 minutes
+            max_record_size_bytes: 4096
+            max_cache_size_megabytes: 1
+  - url: p92ju3rkspl0m.pit-1.try.coder.app/api/v2/workspaces
+    method: GET
+    remedies:
+      - name: Strategy-based throttling of workspace list
+        enabled: true
+        config:
+          strategy_based_throttling:
+            allowed_request_count: 5
+            window_size_in_seconds: 60
+            response_status_code: 429
